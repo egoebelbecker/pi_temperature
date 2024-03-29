@@ -23,7 +23,7 @@ A very basic set of scripts for reading a temperature via Raspberry Pi and chart
 
 - [DS18B20 Digital Temperature Sensor](https://amzn.to/3vyjapy) and associated wiring, circuitry, etc.
 - Raspberry Pi 3 B+ - this is what I used. It may work on smaller models with less memory.
-- Python 3.x, with the Flask package.
+- Python 3.x, with the Flask and gunicorn packages. (Run **pip install flask gunicorn** to install them.)
 
 The easiest way to install this is download or check it out from this repository.
 
@@ -47,12 +47,18 @@ Configure the script:
 
 The script will save the last 24 hours of readings.
 
-Run the **tempsensor.py** script. It does not need to run with root privileges. It expects to find **config.json** in the current working directory, and will store the readings in its current directory.
+Run the **tempsensor.py** script. 
+
+The full command is **python tempsensor.py**. But, there is a shell script **run_sensor.sh** that will run it, too. This command loops, so it will not return the command prompt to you.
+
+It does not need to run with root privileges. It expects to find **config.json** in the current working directory, and will store the readings in its current directory.
 
 
 ### Serving the web page
 
-Run **server.py**. It expects to see the same configuration file and use it to find the readings, but ti does expect the file with be in its working directory.
+Run **server.py** as a gunicorn app. See the **run_server.sh** script. 
+
+It expects to see the same configuration file and use it to find the readings, but ti does expect the file with be in its working directory.
 
 Point your web browser at the Raspberry Pi, on port 5000.
 
