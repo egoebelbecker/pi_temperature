@@ -1,2 +1,3 @@
 - Add command line arguments to tempsensor.py for config file name and location, maybe for settings
-- Add config to web app for readings.txt name and location
+- Add instructions for daemontools
+- Gussy up the web graph a bit

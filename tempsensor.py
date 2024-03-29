@@ -81,6 +81,3 @@ def read_temp(decimals, interval, readings_file, keep):
 if __name__ == "__main__":
     config = read_config("config.json")
     read_temp(config["decimals"], config["interval"], config["readings_file"], config["keep"])
-
-
-

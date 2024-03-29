@@ -9,11 +9,15 @@ A very basic set of scripts for reading a temperature via Raspberry Pi and chart
 
 **tempsensor.py** - reads the temperature, saves to a text file with a timestamp
 
-**config.json** - configuration for tempsensor.py
+**config.json** - configuration for tempsensor.py and server.py
 
 **server.py** - serves chart and temperature readings to browser
 
-**templates/fetch.html** - web app
+**templates/index.html** - web app
+
+**run_sensor.sh** - will run the ssensor script
+
+**run_server.sh** - runs the web server wiuth gunicorn
 
 
 ## Installation and Usage
