@@ -33,11 +33,13 @@ Wire the sensor as described [here.](https://www.circuitbasics.com/raspberry-pi-
 
 Configure the script:
 
-``{
+```
+{
    "interval": "30",
    "readings_file": "readings.txt",
    "decimals": "2"
 }
+```
 
 **interval** - how frequently to poll the temperarture, in seconds.
 **readings_file** - where the readiongs are stored. If you change this, you'll need to update the webserver and web page.
