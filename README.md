@@ -42,7 +42,7 @@ Configure the script:
 ```
 
 **interval** - how frequently to poll the temperarture, in seconds.
-**readings_file** - where the readiongs are stored. If you change this, you'll need to update the webserver and web page.
+**readings_file** - where the readings are stored.
 **decimals** - number of figure to keep after the decimal in the temperature.
 
 The script will save the last 24 hours of readings.
@@ -52,7 +52,9 @@ Run the **tempsensor.py** script. It does not need to run with root privileges. 
 
 ### Serving the web page
 
-Run **server.py**. Point your web browser at the Raspberry Pi, on port 5000.
+Run **server.py**. It expects to see the same configuration file and use it to find the readings, but ti does expect the file with be in its working directory.
+
+Point your web browser at the Raspberry Pi, on port 5000.
 
 
 
