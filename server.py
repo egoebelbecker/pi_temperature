@@ -1,5 +1,23 @@
+import os
 from flask import Flask, render_template, send_file
 
+
+def read_config(config_file_name):
+    try:
+       with open(config_file_name, "r") as f:
+          config = json.load(f)
+          config["interval"] = int(config["interval"])
+          config["decimals"] = int(config["decimals"])
+          config["keep"] = 86400/config["interval"]
+          return config
+    except Exception as e:
+       print("Error reading config: {}".format(e))
+       sys.exit() 
+
+
+config = read_config("config.json")
+cwd = os.getcwd()
+readings_file = os.path.join(cwd, config["readings_file"])
 app = Flask(__name__)
 
 @app.route('/')
@@ -9,7 +27,7 @@ def index():
 @app.route('/readings.txt')
 def get_data():
     try:
-       return send_file('/home/pi/pi_temperature/readings.txt', mimetype="text/csv", cache_timeout=0)
+       return send_file(readings_file, mimetype="text/csv", cache_timeout=0)
     except Exception as e:
        return str(e)
 

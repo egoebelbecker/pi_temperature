@@ -45,9 +45,9 @@ Configure the script:
 **readings_file** - where the readiongs are stored. If you change this, you'll need to update the webserver and web page.
 **decimals** - number of figure to keep after the decimal in the temperature.
 
+The script will save the last 24 hours of readings.
 
 Run the **tempsensor.py** script. It does not need to run with root privileges. It expects to find **config.json** in the current working directory, and will store the readings in its current directory.
-
 
 
 ### Serving the web page

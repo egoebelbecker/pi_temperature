@@ -1,0 +1,2 @@
+- Add command line arguments to tempsensor.py for config file name and location, maybe for settings
+- Add config to web app for readings.txt name and location
