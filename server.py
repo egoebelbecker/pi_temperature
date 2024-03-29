@@ -1,4 +1,6 @@
 import os
+import sys
+import json
 from flask import Flask, render_template, send_file
 
 
@@ -22,9 +24,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('fetch.html')
+    return render_template('index.html')
 
-@app.route('/readings.txt')
+@app.route('/readings')
 def get_data():
     try:
        return send_file(readings_file, mimetype="text/csv", cache_timeout=0)
