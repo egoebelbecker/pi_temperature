@@ -66,7 +66,7 @@ def read_temp(decimals, interval, readings_file, keep):
             timepassed = (datetime.datetime.now() - timepoint).total_seconds()
             temp = parse_reading(lines, decimals)
             with open(readings_file, "a+") as readings:
-               readings.write(time.strftime("%d/%m/%y@%H:%M:%S - ")+str(temp)+" C\n")
+               readings.write(time.strftime("%m-%d-%y %H:%M:%S,")+str(temp)+"\n")
 
             time.sleep(interval-timepassed)
             timepoint = datetime.datetime.now()
