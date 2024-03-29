@@ -5,15 +5,14 @@ import glob
 import time
 import datetime
 
-def read_temp(decimals = 1, sleeptime = 3):
+def read_temp(decimals = 1, sleeptime = 54000):
 
     """Reads the temperature from a 1-wire device"""
-
     device = glob.glob("/sys/bus/w1/devices/" + "28*")[0] + "/w1_slave"
     while True:
         try:
             timepoint = datetime.datetime.now()
-            with open(device, "r") as sensor, open("readings.txt"), "a" as readings:
+            with open(device, "r") as sensor:
                 lines = sensor.readlines()
             while lines[0].strip()[-3:] != "YES":
                 time.sleep(0.2)
@@ -23,7 +22,11 @@ def read_temp(decimals = 1, sleeptime = 3):
             if equals_pos != -1:
                 temp_string = lines[1][equals_pos+2:]
                 temp = round(float(temp_string) / 1000.0, decimals)
-                readings.write(time.strftime("%d/%m/%y@%H:%M:%S - ")+str(temp)+" C")
+                with open("readings.txt", "a+") as readings:
+                    readings.write(time.strftime("%d/%m/%y@%H:%M:%S - ")+str(temp)+" C\n")
+
+
+Check number of lines. If greater than X, delete first line.
                 time.sleep(sleeptime-timepassed)
                 timepoint = datetime.datetime.now()
         except KeyboardInterrupt:
