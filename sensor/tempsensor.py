@@ -13,8 +13,8 @@ def read_temp(decimals = 1, sleeptime = 3):
     while True:
         try:
             timepoint = datetime.datetime.now()
-            with open(device, "r") as f:
-                lines = f.readlines()
+            with open(device, "r") as sensor, open("readings.txt"), "a" as readings:
+                lines = sensor.readlines()
             while lines[0].strip()[-3:] != "YES":
                 time.sleep(0.2)
                 lines = read_temp_raw()
@@ -23,7 +23,7 @@ def read_temp(decimals = 1, sleeptime = 3):
             if equals_pos != -1:
                 temp_string = lines[1][equals_pos+2:]
                 temp = round(float(temp_string) / 1000.0, decimals)
-                print(time.strftime("%d/%m/%y@%H:%M:%S - ")+str(temp)+" C")
+                readings.write(time.strftime("%d/%m/%y@%H:%M:%S - ")+str(temp)+" C")
                 time.sleep(sleeptime-timepassed)
                 timepoint = datetime.datetime.now()
         except KeyboardInterrupt:
