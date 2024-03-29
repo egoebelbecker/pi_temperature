@@ -24,7 +24,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', refresh=config["interval"]*1000)
 
 @app.route('/readings')
 def get_data():

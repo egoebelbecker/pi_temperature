@@ -60,7 +60,7 @@ const fetchCSV = () => fetch("readings")
   .then(csv => {
     temperatureChart.data.datasets[0].data = csvToChartData(csv);
     temperatureChart.update();
-    setTimeout(fetchCSV, 5000); // Repeat every 5 sec
+    setTimeout(fetchCSV, {{refresh}}); // Repeat every 5 sec
 });
 
 fetchCSV(); // First fetch!
