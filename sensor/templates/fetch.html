@@ -49,7 +49,7 @@ const csvToChartData = csv => {
   });
 };
 
-const fetchCSV = () => fetch("temperature.csv")
+const fetchCSV = () => fetch("readings.txt")
   .then(data => data.text())
   .then(csv => {
     temperatureChart.data.datasets[0].data = csvToChartData(csv);
