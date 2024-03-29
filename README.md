@@ -41,7 +41,8 @@ Configure the script:
 {
    "interval": "30",
    "readings_file": "readings.txt",
-   "decimals": "2"
+   "decimals": "2",
+   "location": "Office"
 }
 ```
 
@@ -66,7 +67,7 @@ Run **server.py** as a gunicorn app. See the **run_server.sh** script.
 
 It expects to see the same configuration file and use it to find the readings, but ti does expect the file with be in its working directory.
 
-Point your web browser at the Raspberry Pi, on port 8000. The page refreshes every few seconds.
+Point your web browser at the Raspberry Pi, on port 8000. The page refreshes every few seconds, based on the **interval** setting. It uses **location** for the page title.
 
 
 
