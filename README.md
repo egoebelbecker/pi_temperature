@@ -46,7 +46,9 @@ Configure the script:
 ```
 
 **interval** - how frequently to poll the temperarture, in seconds.
+
 **readings_file** - where the readings are stored.
+
 **decimals** - number of figure to keep after the decimal in the temperature.
 
 The script will save the last 24 hours of readings.

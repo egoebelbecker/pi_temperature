@@ -22,7 +22,7 @@ function exerciseOne(names){
       labels: [],
       datasets: [{
         data: [],
-        label: "Temperature",
+        label: "Temperature for {{location}}",
         borderColor: "#3e95cd",
         fill: false
       }]
@@ -60,7 +60,7 @@ const fetchCSV = () => fetch("readings")
   .then(csv => {
     temperatureChart.data.datasets[0].data = csvToChartData(csv);
     temperatureChart.update();
-    setTimeout(fetchCSV, {{refresh}}); // Repeat every 5 sec
+    setTimeout(fetchCSV, {{refresh}}); 
 });
 
 fetchCSV(); // First fetch!
