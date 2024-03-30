@@ -50,7 +50,7 @@ to te bottom of the file.
 $ sudo modprobe w1-gpio
 $ sudo modprobe w1-therm
 ```
-
+4. Look for the device in ```/sys/bus/w1/devices```. Its directory name will will begin with **28**.
 
 
 Configure the script:
