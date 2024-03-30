@@ -52,6 +52,18 @@ $ sudo modprobe w1-therm
 ```
 4. Look for the device in ```/sys/bus/w1/devices```. Its directory name will will begin with **28**.
 
+```
+pi@yushi:~ $ modprobe w1-gpio
+pi@yushi:~ $ modprobe w1-therm
+pi@yushi:~ $ cd /sys/bus/w1/devices/
+pi@yushi:/sys/bus/w1/devices $ ls
+28-3ce1d44421fb  w1_bus_master1
+pi@yushi:/sys/bus/w1/devices $ cat 28-3ce1d44421fb/w1_slave
+6d 01 55 05 7f a5 a5 66 ef : crc=ef YES
+6d 01 55 05 7f a5 a5 66 ef t=22812
+pi@yushi:/sys/bus/w1/devices $
+```
+
 
 Configure the script:
 
