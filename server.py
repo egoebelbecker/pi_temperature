@@ -29,7 +29,7 @@ def index():
 @app.route('/readings')
 def get_data():
     try:
-       return send_file(readings_file, mimetype="text/csv", cache_timeout=0)
+       return send_file(readings_file, mimetype="text/csv", max_age=0)
     except Exception as e:
        return str(e)
 
