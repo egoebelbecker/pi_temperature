@@ -27,7 +27,9 @@ A very basic set of scripts for reading a temperature via Raspberry Pi and chart
 
 - [DS18B20 Digital Temperature Sensor](https://amzn.to/3vyjapy) and associated wiring, circuitry, etc.
 - Raspberry Pi 3 B+ - this is what I used. It may work on smaller models with less memory.
-- Python 3.x, with the Flask and gunicorn packages. (Run **pip install flask gunicorn** to install them.)
+- If you're installing on the **lite** raspian image, you will need to install **git** and **pip**.
+- If you want to use a virtualenv, go right ahead.
+- Python 3.x, with the Flask and gunicorn packages. Run **pip install flask** and **sudo apt install gunicorn** to install them. Gunicorn works better as a system package.
 
 The easiest way to install this is download or check it out from this repository.
 
