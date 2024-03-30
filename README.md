@@ -29,7 +29,9 @@ A very basic set of scripts for reading a temperature via Raspberry Pi and chart
 - Raspberry Pi 3 B+ - this is what I used. It may work on smaller models with less memory.
 - If you're installing on the **lite** raspian image, you will need to install **git** and **pip**.
 - If you want to use a virtualenv, go right ahead.
-- Python 3.x, with the Flask and gunicorn packages. Run **pip install flask** and **sudo apt install gunicorn** to install them. Gunicorn works better as a system package.
+- Python 3.x, with the Flask and gunicorn packages. Run **sudo pip install flask** and **sudo apt install gunicorn** to install them. Gunicorn works better as a system package.
+- Install daemontools: **sudo apt install daemontools daemontools-run**
+- See [these instructions](https://gist.github.com/connorjan/01f995511cfd0fee1cfae2387024b54a#:~:text=Install%20daemontools%20%24%20sudo%20apt-get%20install%20daemontools%20daemontools-run,want%20to%20be%20monitored%20%24%20sudo%20mkdir%20%2Fetc%2Fservice%2Ftestservice) for setting up daemontools on pi. 
 
 The easiest way to install this is download or check it out from this repository.
 
