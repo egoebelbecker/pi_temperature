@@ -35,6 +35,24 @@ The easiest way to install this is download or check it out from this repository
 
 Wire the sensor as described [here.](https://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/) 
 
+![](wiring.png)
+
+Here's a summary of the steps required on the nano:
+
+1. Edit /boot/config.txt. Add:
+```
+dtoverlay=w1-gpio
+```
+to te bottom of the file.
+2. Reboot the Pi.
+3. Login and run modprobe.
+```
+$ sudo modprobe w1-gpio
+$ sudo modprobe w1-therm
+```
+
+
+
 Configure the script:
 
 ```
