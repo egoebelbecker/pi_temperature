@@ -41,7 +41,7 @@ Wire the sensor as described [here.](https://www.circuitbasics.com/raspberry-pi-
 
 ![](wiring.png)
 
-Here's a summary of the steps required on the nano:
+Here's a summary of the steps required on the pi:
 
 1. Edit /boot/config.txt. Add:
 ```
