@@ -76,6 +76,7 @@ def read_temp(decimals, interval, readings_file, keep):
 
                 timepassed = (datetime.datetime.now() - timepoint).total_seconds()
                 temp = parse_reading(lines, decimals)
+                readings_file = os.path.join(os.getcwd(), entry[1] + ".txt")
                 with open(readings_file, "a+") as readings:
                     readings.write(time.strftime("%m-%d-%y %H:%M:%S,")+str(temp)+"\n")
 
@@ -92,5 +93,5 @@ def read_temp(decimals, interval, readings_file, keep):
 if __name__ == "__main__":
     config = read_config("config.json")
     devices = get_devices(config["devices"])
-    read_temp(config["decimals"], config["interval"], config["readings_file"], config["keep"])
+    read_temp(config["decimals"], config["interval"], config["keep"])
 
