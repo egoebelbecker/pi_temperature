@@ -20,6 +20,7 @@ def read_config(config_file_name):
 config = read_config("config.json")
 cwd = os.getcwd()
 readings_file = os.path.join(cwd, config["readings_file"])
+devices_file = os.path.join(cwd, config["devices])
 app = Flask(__name__)
 
 @app.route('/')
@@ -32,6 +33,15 @@ def get_data():
        return send_file(readings_file, mimetype="text/csv", max_age=0)
     except Exception as e:
        return str(e)
+
+@app.route('/devices')
+def get_data():
+    try:
+       return send_file(devices_file, mimetype="text/csv", max_age=0)
+    except Exception as e:
+       return str(e)
+
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug=True)

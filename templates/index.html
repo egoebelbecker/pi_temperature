@@ -11,9 +11,25 @@
 
 <script>
 
+
+var data = [
+    { text: 'foo', value: 'foo' },
+    {text: 'bar', value: 'bar' }
+];
+
+var select = document.getElementById('devices');
+select.options.length = 0; // clear out existing items
+for (var i = 0; i < data.length; i++) {
+    var d = data[i];
+    select.options.add(new Option(d.text, d.value))
+}
+
+
+
 function exerciseOne(names){
   names.forEach(x => console.log(x));
 }
+
 
 
   const config = {
@@ -66,4 +82,9 @@ const fetchCSV = () => fetch("readings")
 fetchCSV(); // First fetch!
 
 </script>
- 
+
+
+<label for="devices">Choose a Room:</label>
+
+<select	name="devices" id="devices">
+</select>
