@@ -2,6 +2,6 @@
    "interval": "30",
    "decimals": "2",
    "location": "Eric's Office",
-   "devices": "devices.csv"
+   "devices": "devices.json"
 }
 
