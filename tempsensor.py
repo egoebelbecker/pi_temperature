@@ -60,7 +60,7 @@ def check_lines(filename, max_items):
             fout.writelines(data[offset:])
 
 
-def read_temp(decimals, interval, readings_file, keep):
+def read_temp(decimals, interval, keep):
 
     while True:
         for entry in devices:
