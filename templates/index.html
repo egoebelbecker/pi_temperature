@@ -10,19 +10,23 @@
 
 
 <body>
-
-
   <label for="devices">Choose a Room:</label>
-
   <select	name="devices" id="devices">
   </select>
-  
-
-
 </body>
 
 
 <script>
+
+
+const fetchDevices = () => fetch("devices")
+  .then(data => data.text())
+  .then(csv => {
+    temperatureChart.data.datasets[0].data = csvToChartData(csv);
+    temperatureChart.update();
+    setTimeout(fetchCSV, {{refresh}}); 
+});
+
 
 
 var data = [
