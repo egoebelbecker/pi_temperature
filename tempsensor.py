@@ -30,10 +30,8 @@ def read_config(config_file_name):
 def get_devices(device_file):
 
     devices = []
-    with open(device_file, newline='') as f:
-        csvfile = csv.reader(f)    
-        for row in csvfile:
-            devices.append(row)
+    with open(device_file, "r") as f:
+        devices = json.load(f)    
 
     return devices
 
@@ -64,7 +62,7 @@ def read_temp(decimals, interval, keep):
 
     while True:
         for entry in devices:
-            device = get_device(entry)
+            device = get_device(entry["id"])
             try:
                 timepoint = datetime.datetime.now()
 

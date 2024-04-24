@@ -1,0 +1,12 @@
+{
+    "devices" : [
+        {
+            "id":"28-3ce1d44421fb",
+            "name":"office"
+        },
+        {
+            "id":"28-3ce1d444849d", 
+            "name":"bathroom"
+        }
+    ]
+}
