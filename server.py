@@ -37,7 +37,7 @@ def get_data():
 @app.route('/devices')
 def get_data():
     try:
-       return send_file(devices_file, mimetype="text/csv", max_age=0)
+       return send_file(devices_file, mimetype="application/json", max_age=0)
     except Exception as e:
        return str(e)
 
