@@ -26,9 +26,19 @@ def read_config(config_file_name):
        print("Error reading config: {}".format(e))
        sys.exit() 
 
-def get_device():
+def get_devices(device_file):
+
+    devices = []
+    with open(device_file, newline='') as f:
+        csvfile = csv.reader(f)    
+        for row in csvfile:
+            devices.append(row)
+
+    return devices
+
+def get_device(entry):
     try:
-       return glob.glob("/sys/bus/w1/devices/" + "28*")[0] + "/w1_slave"
+       return glob.glob("/sys/bus/w1/devices/" + entry)[0] + "/w1_slave"
     except Exception as e:
       print("Failed to get temp sensor device: {}".format(e))
       sys.exit()
@@ -51,33 +61,35 @@ def check_lines(filename, max_items):
 
 def read_temp(decimals, interval, readings_file, keep):
 
-    device = get_device()
-
     while True:
-        try:
-            timepoint = datetime.datetime.now()
+        for entry in devices:
+            device = get_device(entry)
+            try:
+                timepoint = datetime.datetime.now()
 
-            with open(device, "r") as sensor:
-                lines = sensor.readlines()
-            while lines[0].strip()[-3:] != "YES":
-                time.sleep(0.2)
-                lines = read_temp_raw()
+                with open(device, "r") as sensor:
+                    lines = sensor.readlines()
+                while lines[0].strip()[-3:] != "YES":
+                    time.sleep(0.2)
+                    lines = read_temp_raw()
 
-            timepassed = (datetime.datetime.now() - timepoint).total_seconds()
-            temp = parse_reading(lines, decimals)
-            with open(readings_file, "a+") as readings:
-               readings.write(time.strftime("%m-%d-%y %H:%M:%S,")+str(temp)+"\n")
+                timepassed = (datetime.datetime.now() - timepoint).total_seconds()
+                temp = parse_reading(lines, decimals)
+                with open(readings_file, "a+") as readings:
+                    readings.write(time.strftime("%m-%d-%y %H:%M:%S,")+str(temp)+"\n")
 
-            time.sleep(interval-timepassed)
-            timepoint = datetime.datetime.now()
-            check_lines(readings_file, keep)
+                time.sleep(interval-timepassed)
+                timepoint = datetime.datetime.now()
+                check_lines(readings_file, keep)
 
-        except KeyboardInterrupt:
-            break
-        except Exception as e:
-           print("Quitting on exception: {}".format(e))
-           sys.exit()
+            except KeyboardInterrupt:
+                break
+            except Exception as e:
+                print("Quitting on exception: {}".format(e))
+                sys.exit()
 
 if __name__ == "__main__":
     config = read_config("config.json")
+    devices = get_devices(config["devices"])
     read_temp(config["decimals"], config["interval"], config["readings_file"], config["keep"])
+
