@@ -31,13 +31,14 @@ def get_devices(device_file):
 
     devices = []
     with open(device_file, "r") as f:
-        devices = json.load(f)    
+        device_list = json.load(f)
+        devices = device_list["devices"]
 
     return devices
 
 def get_device(entry):
     try:
-       return glob.glob("/sys/bus/w1/devices/" + entry[0])[0] + "/w1_slave"
+       return glob.glob("/sys/bus/w1/devices/" + entry)[0] + "/w1_slave"
     except Exception as e:
       print("Failed to get temp sensor device: {}".format(e))
       sys.exit()
