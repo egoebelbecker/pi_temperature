@@ -61,7 +61,6 @@ function fetchCSV(room) {
   .then(csv => {
     temperatureChart.data.datasets[0].data = csvToChartData(csv);
     temperatureChart.update();
-    timeout = setTimeout(fetchCSV(room), 60000); 
   });
 }
 
@@ -97,6 +96,8 @@ function createChart(room) {
   temperatureChart = new Chart(ctx, config);
 
   fetchCSV(room);
+  timeout = setTimeout(fetchCSV(room), 60000); 
+
 }
 
 
