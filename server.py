@@ -19,7 +19,6 @@ def read_config(config_file_name):
 
 config = read_config("config.json")
 cwd = os.getcwd()
-readings_file = os.path.join(cwd, config["readings_file"])
 devices_file = os.path.join(cwd, config["devices"])
 app = Flask(__name__)
 

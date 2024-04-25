@@ -20,7 +20,6 @@ def read_config(config_file_name):
           config = json.load(f)
           config["interval"] = int(config["interval"])
           config["decimals"] = int(config["decimals"])
-          config["keep"] = 86400/config["interval"]
           return config
     except Exception as e:
        print("Error reading config: {}".format(e))
