@@ -19,6 +19,10 @@ A very basic set of scripts for reading a temperature via Raspberry Pi and chart
 
 **run_server.sh** - runs the web server wiuth gunicorn
 
+**manage_sensors.py** - finds temperature sensors and add them to device list
+
+**devices.json** - JSON list of sensors and names
+
 
 ## Installation and Usage
 
@@ -73,20 +77,41 @@ Configure the script:
 
 ```
 {
-   "interval": "30",
-   "readings_file": "readings.txt",
-   "decimals": "2",
-   "location": "Office"
+   "interval": "60",
+   "decimals": "1",
+   "devices": "devices.json",
+   "keep": "43800"
 }
 ```
 
-**interval** - how frequently to poll the temperarture, in seconds.
-
-**readings_file** - where the readings are stored.
+**interval** - how frequently to poll the temperature, in seconds.
 
 **decimals** - number of figure to keep after the decimal in the temperature.
 
-The script will save the last 24 hours of readings.
+**devices** - JSON file containing decvices list
+
+**keep** - how many readings to retain
+
+
+Run the **manage_sensors.py** script. It can be run at any time, and will offer to add any new sensors to the JSON file, with a name.
+
+```
+pi@yushi:~/pi_temperature $ ./manage_sensors.py
+[
+    {
+        "id": "28-3ce1d444849d",
+        "name": "sensor-1"
+    }
+]
+Found 28-3ce1d44483a0
+Found 28-3ce1d444849d
+Found 28-3ce1d44421fb
+Looking for 28-3ce1d44483a0
+
+New device: 28-3ce1d44483a0
+Enter a name:
+```
+
 
 Run the **tempsensor.py** script. 
 

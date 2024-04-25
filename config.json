@@ -1,7 +1,6 @@
 {
    "interval": "60",
    "decimals": "1",
-   "location": "Eric's Office",
    "devices": "devices.json",
    "keep": "43800"
 }

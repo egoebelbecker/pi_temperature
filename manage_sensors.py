@@ -15,7 +15,7 @@ def read_config(config_file_name):
           return config
     except Exception as e:
        print("Error reading config: {}".format(e))
-       sys.exit() 
+       sys.exit()
 
 def get_devices(device_file):
 
@@ -29,13 +29,13 @@ def get_devices(device_file):
 def check_devices(devices):
     try:
        found_devices = []
-       files = os.listdir(config["device_root"])
+       files = os.listdir("/sys/bus/w1/devices/")
        for file in files:
            if file.startswith("28"):
                print("Found {}".format(file))
                found_devices.append(file)
 
-       
+
        for entry in found_devices:
            print("Looking for {}".format(entry))
            found = False
@@ -45,7 +45,7 @@ def check_devices(devices):
                    found = True
 
            if not found:
-              print("New device: {}".format(entry))
+              print("\nNew device: {}".format(entry))
               user_input = input("Enter a name: ")
               new_device = {"id": entry, "name": user_input}
               devices.append(new_device)
@@ -60,12 +60,3 @@ def check_devices(devices):
       print("Failed to get temp sensor device: {}".format(e))
       sys.exit()
 
-
-
-
-
-if __name__ == "__main__":
-    config = read_config("config.json")
-    devices = get_devices(config["devices"])
-    print(print(json.dumps(devices, indent=4)))
-    check_devices(devices)
