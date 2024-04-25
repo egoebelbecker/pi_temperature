@@ -96,7 +96,7 @@ function createChart(room) {
     }
   };
 
-  const ctx = document.getElementById("line-chart");
+  const ctx = document.getElementById('line-chart');
   temperatureChart = new Chart(ctx, config);
 
   fetchCSV(room);
