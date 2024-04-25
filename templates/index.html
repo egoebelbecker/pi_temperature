@@ -14,9 +14,7 @@
   <select name="devices" id="devices" onchange="createChart(this.value)"></select>
   </select>
 
-  <div class="chart_continer">
-    <canvas id="line-chart"></canvas>
-  </div>
+  <canvas id="line-chart"></canvas>
 
 
 </body>
@@ -78,7 +76,7 @@ function createChart(room) {
       labels: [],
       datasets: [{
         data: [],
-        label: "${room}",
+        label: room,
         borderColor: "#3e95cd",
         fill: false
       }]
