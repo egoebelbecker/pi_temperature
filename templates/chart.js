@@ -1,0 +1,81 @@
+<script>
+let todos = document.getElementById('devices');
+let newDefault1 = new Option('Select room', null, true, true)
+newDefault1.disabled = true
+todos.add(newDefault1)
+const fetchDevices = () => fetch("devices")
+.then(res => res.json())
+  .then(data => {
+      data.devices.forEach(todo => {
+        let option = new Option(todo.name, todo.name)
+        console.log(option)
+        todos.add(option)
+      });
+});
+
+
+fetchDevices();
+
+var timeout = null
+var temperatureChart = null
+var currentRoom = null
+
+const csvToChartData = csv => {
+  const lines = csv.trim().split("\n");
+  return lines.map(line => {
+    const [date, temperature] = line.split(",");
+    return {
+      x: date,
+      y: temperature
+    };
+  });
+};
+
+function fetchCSV() {
+  fetch(currentRoom)
+  .then(data => data.text())
+  .then(csv => {
+    temperatureChart.data.datasets[0].data = csvToChartData(csv);
+    temperatureChart.update();
+    timeout = setTimeout(fetchCSV, 60000); // double tap?
+  });
+}
+
+function createChart(room) {
+
+  currentRoom = room
+
+  console.log("Changing to " + currentRoom);
+
+  const config = {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [{
+        data: [],
+        label: room,
+        borderColor: "#3e95cd",
+        fill: false
+      }]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          type: 'time',
+          distribution: 'linear',
+        }],
+        title: {
+          display: false,
+        }
+      }
+    }
+  };
+
+  const ctx = document.getElementById('temps').getContext('2d');
+  temperatureChart = new Chart(ctx, config);
+
+  fetchCSV(room);
+
+}
+
+</script>
