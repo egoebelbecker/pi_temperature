@@ -6,7 +6,6 @@ import glob
 import time
 import datetime
 import json
-import csv
 
 #
 # Configurable items:
@@ -38,7 +37,7 @@ def get_devices(device_file):
 
 def get_device(entry):
     try:
-       return glob.glob("/sys/bus/w1/devices/" + entry)[0] + "/w1_slave"
+       return glob.glob(config["device_root"] + entry)[0] + config["device_file"]
     except Exception as e:
       print("Failed to get temp sensor device: {}".format(e))
       sys.exit()

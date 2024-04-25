@@ -2,6 +2,8 @@
    "interval": "30",
    "decimals": "2",
    "location": "Eric's Office",
-   "devices": "devices.json"
+   "devices": "devices.json",
+   "device_root": "/sys/bus/w1/devices",
+   "device_file": "w1_slave"
 }
 
