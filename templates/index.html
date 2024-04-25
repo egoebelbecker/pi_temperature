@@ -43,6 +43,7 @@ fetchDevices();
 
 var timeout = null
 var temperatureChart = null
+var currentRoom = null
 
 const csvToChartData = csv => {
   const lines = csv.trim().split("\n");
@@ -55,21 +56,21 @@ const csvToChartData = csv => {
   });
 };
 
-function fetchCSV(room) {
-  fetch(room)
+function fetchCSV() {
+  fetch(currentRoom)
   .then(data => data.text())
   .then(csv => {
     temperatureChart.data.datasets[0].data = csvToChartData(csv);
     temperatureChart.update();
-    timeout = setTimeout(fetchCSV(room), 60000); // double tap?
+    timeout = setTimeout(fetchCSV(), 60000); // double tap?
   });
 }
 
 function createChart(room) {
 
-  console.log("Changing to " + room + " clearing timeout " + timeout);
+  currentRoom = room
 
-  clearTimeout(timeout);
+  console.log("Changing to " + currentRoom);
 
   const config = {
     type: 'line',
@@ -77,7 +78,7 @@ function createChart(room) {
       labels: [],
       datasets: [{
         data: [],
-        label: "Select a Room",
+        label: "${room}",
         borderColor: "#3e95cd",
         fill: false
       }]
