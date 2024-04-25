@@ -23,7 +23,6 @@
 
 const fetchDevices = () => fetch("devices")
   .then(data => {
-    console.log(data);
     return data.json()})
   .then(data => {
     console.log(data);
@@ -31,6 +30,7 @@ const fetchDevices = () => fetch("devices")
     select.options.length = 0; // clear out existing items
     for (var i = 0; i < data.length; i++) {
       var d = data[i];
+      console.log(d);
       select.options.add(new Option(d.name, d.id));
     }
 });
