@@ -34,7 +34,7 @@ def get_data():
        return str(e)
 
 @app.route('/devices')
-def get_data():
+def get_devices():
     try:
        return send_file(devices_file, mimetype="application/json", max_age=0)
     except Exception as e:
