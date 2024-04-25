@@ -28,7 +28,7 @@ todos.add(newDefault1)
 const fetchDevices = () => fetch("devices")
 .then(res => res.json())
   .then(data => {
-      data.forEach(todo => {
+      data.devices.forEach(todo => {
         let option = new Option(todo.name, todo.name)
         console.log(option)
         todos.add(option)
