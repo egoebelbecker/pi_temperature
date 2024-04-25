@@ -26,6 +26,8 @@ def get_devices(device_file):
 
     return devices
 
+def check_devices():
+
 
 
 
@@ -34,4 +36,4 @@ def get_devices(device_file):
 if __name__ == "__main__":
     config = read_config("config.json")
     devices = get_devices(config["devices"])
-    print(devices)    
+    print(print(json.dumps(devices, indent=4)))
