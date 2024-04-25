@@ -14,8 +14,8 @@
   <select name="devices" id="devices" onchange="createChart(this.value)"></select>
   </select>
 
-  <div id="line-chart" style="width: 1024px; height: 768px;">
-    <canvas id="line-chart"></canvas>
+  <div id="temps-container">
+    <canvas id="temps"></canvas>
   </div>
 
 </body>
@@ -95,7 +95,7 @@ function createChart(room) {
     }
   };
 
-  const ctx = document.getElementById('line-chart');
+  const ctx = document.getElementById('temps').getContext('2d');
   temperatureChart = new Chart(ctx, config);
 
   fetchCSV(room);
