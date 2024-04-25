@@ -10,7 +10,11 @@ const fetchDevices = () => fetch("devices")
           document.getElementById('devices').add(option)
           currentRoom = todo.name
         });
-  });
+        theRoom = document.getElementById('devices').value
+        console.log(theRoom)
+        createChart(theRoom)
+  }
+);
 
 
 
