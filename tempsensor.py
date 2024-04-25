@@ -20,6 +20,7 @@ def read_config(config_file_name):
           config = json.load(f)
           config["interval"] = int(config["interval"])
           config["decimals"] = int(config["decimals"])
+          config["keep"] = int(config["keep"])
           return config
     except Exception as e:
        print("Error reading config: {}".format(e))
@@ -48,7 +49,7 @@ def parse_reading(lines, decimals):
          temp_string = lines[1][equals_pos+2:]
          return(round(float(temp_string) / 1000.0, decimals))
      except Exception as e:
-       print("Failed to p[arse reading: {}".format(e))
+       print("Failed to parse reading: {}".format(e))
        sys.exit()
 
 def check_lines(filename, max_items):
@@ -66,7 +67,6 @@ def read_temp(decimals, interval, keep):
     while True:
         for entry in devices:
             device = get_device(entry["id"])
-            print("Reading {}".format(device))
             try:
                 timepoint = datetime.datetime.now()
 
@@ -83,11 +83,9 @@ def read_temp(decimals, interval, keep):
                 sys.exit()
  
             try:
-                print(lines)
                 timepassed = (datetime.datetime.now() - timepoint).total_seconds()
                 temp = parse_reading(lines, decimals)
                 readings_file = os.path.join(os.getcwd(), entry["name"] + ".txt")
-                print(readings_file)
                 with open(readings_file, "a+") as readings:
                     readings.write(time.strftime("%m-%d-%y %H:%M:%S,")+str(temp)+"\n")
 
