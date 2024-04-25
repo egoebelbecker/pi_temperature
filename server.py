@@ -28,11 +28,12 @@ def index():
 
 @app.route('/<readings>')
 def get_data(readings):
+   print("Reading: {}".format(readings))
    try:
-      readings_file = os.path.join(cwd, readings + ".txt")
       if readings == "chart.js":
          return send_file("chart.js", mimetype="application/javascript", max_age=0) 
       else:
+       readings_file = os.path.join(cwd, readings + ".txt")
        return send_file(readings_file, mimetype="text/csv", max_age=0)
    except Exception as e:
        return str(e)
