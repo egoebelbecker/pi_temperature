@@ -1,7 +1,7 @@
 # pi_temperature
 
 
-A very basic set of scripts for reading a temperature via Raspberry Pi and charting it in a web browser.
+A very basic set of scripts for reading temperature sensors via Raspberry Pi and charting it in a web browser.
 
 ![](trimmed.gif)
 
@@ -41,9 +41,12 @@ The easiest way to install this is download or check it out from this repository
 
 ### Reading the sensor
 
-Wire the sensor as described [here.](https://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/) 
+Wire the sensor(s) as described [here.](https://www.circuitbasics.com/raspberry-pi-ds18b20-temperature-sensor-tutorial/) 
 
 ![](wiring.png)
+
+
+Note: this version can readmore than one sensor. Wire them in parallel to the data pin, using a single resistor between 3 volts and data.
 
 Here's a summary of the steps required on the pi:
 
@@ -111,6 +114,8 @@ Looking for 28-3ce1d44483a0
 New device: 28-3ce1d44483a0
 Enter a name:
 ```
+
+![](manage.gif)
 
 
 Run the **tempsensor.py** script. 
