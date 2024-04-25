@@ -1,12 +1,1 @@
-{
-    "devices" : [
-        {
-            "id":"28-3ce1d44421fb",
-            "name":"office"
-        },
-        {
-            "id":"28-3ce1d444849d", 
-            "name":"bathroom"
-        }
-    ]
-}
+{"devices": [{"id": "28-3ce1d444849d", "name": "bathroom"}, {"id": "28-3ce1d44421fb", "name": "office"}, {"id": "28-3ce1d44483a0", "name": "kitchen"}]}

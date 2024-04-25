@@ -32,25 +32,29 @@ def check_devices(devices):
        files = os.listdir(config["device_root"])
        for file in files:
            if file.startswith("28"):
+               print("Found {}".format(file))
                found_devices.append(file)
 
        
        for entry in found_devices:
+           print("Looking for {}".format(entry))
+           found = False
            for device in devices:
                if entry == device["id"]:
                    print("Skipping {}".format(entry))
-                   found_devices.remove(entry)               
-                   break
+                   found = True
 
-       for entry in found_devices:
-           print("New device: {}".format(entry))
-           user_input = input("Enter a name: ")
-           new_device = {"id": entry, "name": user_input}
-           devices.append(new_device)
+           if not found:
+              print("New device: {}".format(entry))
+              user_input = input("Enter a name: ")
+              new_device = {"id": entry, "name": user_input}
+              devices.append(new_device)
 
 
        with open(config["devices"], 'w') as outfile:
-          json.dump(devices, outfile)
+          device_list = {}
+          device_list["devices"] = devices
+          json.dump(device_list, outfile)
 
     except Exception as e:
       print("Failed to get temp sensor device: {}".format(e))
@@ -64,3 +68,4 @@ if __name__ == "__main__":
     config = read_config("config.json")
     devices = get_devices(config["devices"])
     print(print(json.dumps(devices, indent=4)))
+    check_devices(devices)

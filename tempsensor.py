@@ -37,16 +37,20 @@ def get_devices(device_file):
 
 def get_device(entry):
     try:
-       return glob.glob(config["device_root"] + entry)[0] + config["device_file"]
+       return glob.glob("/sys/bus/w1/devices/"+ entry)[0] + "/w1_slave"
     except Exception as e:
       print("Failed to get temp sensor device: {}".format(e))
       sys.exit()
 
 def parse_reading(lines, decimals):
-     equals_pos = lines[1].find("t=")
-     if equals_pos != -1:
-       temp_string = lines[1][equals_pos+2:]
-       return(round(float(temp_string) / 1000.0, decimals))
+     try:
+       equals_pos = lines[1].find("t=")
+       if equals_pos != -1:
+         temp_string = lines[1][equals_pos+2:]
+         return(round(float(temp_string) / 1000.0, decimals))
+     except Exception as e:
+       print("Failed to p[arse reading: {}".format(e))
+       sys.exit()
 
 def check_lines(filename, max_items):
     with open(filename, 'r') as fin:
@@ -63,6 +67,7 @@ def read_temp(decimals, interval, keep):
     while True:
         for entry in devices:
             device = get_device(entry["id"])
+            print("Reading {}".format(device))
             try:
                 timepoint = datetime.datetime.now()
 
@@ -72,9 +77,18 @@ def read_temp(decimals, interval, keep):
                     time.sleep(0.2)
                     lines = read_temp_raw()
 
+            except KeyboardInterrupt:
+                break
+            except Exception as e:
+                print("Quitting on exception reading {}: {}".format(e, entry[id]))
+                sys.exit()
+ 
+            try:
+                print(lines)
                 timepassed = (datetime.datetime.now() - timepoint).total_seconds()
                 temp = parse_reading(lines, decimals)
-                readings_file = os.path.join(os.getcwd(), entry[1] + ".txt")
+                readings_file = os.path.join(os.getcwd(), entry["name"] + ".txt")
+                print(readings_file)
                 with open(readings_file, "a+") as readings:
                     readings.write(time.strftime("%m-%d-%y %H:%M:%S,")+str(temp)+"\n")
 
@@ -85,7 +99,7 @@ def read_temp(decimals, interval, keep):
             except KeyboardInterrupt:
                 break
             except Exception as e:
-                print("Quitting on exception: {}".format(e))
+                print("Quitting on exception processing result: {}".format(e))
                 sys.exit()
 
 if __name__ == "__main__":
