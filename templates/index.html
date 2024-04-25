@@ -19,25 +19,19 @@
 <script>
 
 
-function updateselect(data) {
-  var select = document.getElementById('devices');
-    select.options.length = 0; // clear out existing items
-    for (var i = 0; i < data.length; i++) {
-      var d = data[i];
-      console.log(d);
-      select.options.add(new Option(d.name, d.name));
-    }
-  }
 
 
+let todos = document.getElementById('devices');
+let newDefault1 = new Option('Select room', null, true, true)
+newDefault1.disabled = true
+todos.add(newDefault1)
 const fetchDevices = () => fetch("devices")
+.then(res => res.json())
   .then(data => {
-    return data.json()})
-  .then(data => {
-    const selectit = function (data) {
-      $.each(data,
-      const keyit = function (key, value) {
-      $("#devices").append("<option value='" + value.c + "'>" + value.d + "</option>");
+      data.forEach(todo => {
+        let option = new Option(todo.name, todo.name)
+        console.log(option)
+        todos.add(option)
       });
 });
 
