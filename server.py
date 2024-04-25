@@ -27,7 +27,7 @@ def index():
     return render_template('index.html', refresh=config["interval"]*1000, location=config["location"])
 
 @app.route('/<readings>')
-def get_data():
+def get_data(readings):
     try:
        readings_file = os.path.join(cwd, readings + ".txt")
        return send_file(readings_file, mimetype="text/csv", max_age=0)
