@@ -62,7 +62,7 @@ function fetchCSV() {
   .then(csv => {
     temperatureChart.data.datasets[0].data = csvToChartData(csv);
     temperatureChart.update();
-    timeout = setTimeout(fetchCSV, 6000000); // double tap?
+    timeout = setTimeout(fetchCSV, 600000); // double tap?
   });
 }
 
