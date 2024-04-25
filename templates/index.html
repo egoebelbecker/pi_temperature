@@ -42,6 +42,7 @@ const fetchDevices = () => fetch("devices")
 fetchDevices();
 
 var timeout = null
+var temperatureChart = null
 
 const csvToChartData = csv => {
   const lines = csv.trim().split("\n");
@@ -93,7 +94,7 @@ function createChart(room) {
   };
 
   const ctx = document.getElementById("line-chart");
-  const temperatureChart = new Chart(ctx, config);
+  temperatureChart = new Chart(ctx, config);
 
   fetchCSV(room);
 }
