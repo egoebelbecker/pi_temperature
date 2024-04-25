@@ -61,11 +61,13 @@ function fetchCSV(room) {
   .then(csv => {
     temperatureChart.data.datasets[0].data = csvToChartData(csv);
     temperatureChart.update();
-    timeout = setTimeout(fetchCSV(room), 60000); 
+    timeout = setTimeout(fetchCSV(room), 60000); // double tap?
   });
 }
 
 function createChart(room) {
+
+  console.log("Changing to " + room + " clearing timeout " + timeout);
 
   clearTimeout(timeout);
 
