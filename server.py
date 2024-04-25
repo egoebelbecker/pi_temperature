@@ -26,9 +26,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html', refresh=config["interval"]*1000, location=config["location"])
 
-@app.route('/readings')
+@app.route('/<readings>')
 def get_data():
     try:
+       readings_file = os.path.join(cwd, readings + ".txt")
        return send_file(readings_file, mimetype="text/csv", max_age=0)
     except Exception as e:
        return str(e)
