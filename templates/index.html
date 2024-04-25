@@ -31,7 +31,7 @@ const fetchDevices = () => fetch("devices")
     select.options.length = 0; // clear out existing items
     for (var i = 0; i < data.length; i++) {
       var d = data[i];
-      select.options.add(new Option(d.text, d.value));
+      select.options.add(new Option(d.name, d.id));
     }
 });
 
