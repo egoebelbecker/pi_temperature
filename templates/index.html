@@ -11,7 +11,7 @@
 
 <body>
   <label for="devices">Choose a Room:</label>
-  <select	name="devices" id="devices">
+  <select name="devices" id="devices">
   </select>
 </body>
 
@@ -34,9 +34,9 @@ const fetchDevices = () => fetch("devices")
   .then(data => {
     return data.json()})
   .then(data => {
-    function (json) {
-      $.each(json,
-      function (key, value) {
+    const selectit = function (data) {
+      $.each(data,
+      const keyit = function (key, value) {
       $("#devices").append("<option value='" + value.c + "'>" + value.d + "</option>");
       });
 });
