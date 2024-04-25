@@ -59,7 +59,7 @@ function createChart(room) {
         }],
         title: {
           display: false,
-        }
+        },
         legend: {
           display: false,
         }
