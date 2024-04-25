@@ -48,6 +48,8 @@ Wire the sensor(s) as described [here.](https://www.circuitbasics.com/raspberry-
 
 Note: this version can readmore than one sensor. Wire them in parallel to the data pin, using a single resistor between 3 volts and data.
 
+![](marked_up.jpg)
+
 Here's a summary of the steps required on the pi:
 
 1. Edit /boot/config.txt. Add:
