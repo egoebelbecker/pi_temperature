@@ -1,3 +1,6 @@
+var temperatureChart = null
+var currentRoom = null
+
 const fetchDevices = () => fetch("devices")
   .then(res => res.json())
     .then(data => {
@@ -5,14 +8,12 @@ const fetchDevices = () => fetch("devices")
           let option = new Option(todo.name, todo.name)
           console.log(option)
           document.getElementById('devices').add(option)
+          currentRoom = todo.name
         });
   });
 
 
 
-var timeout = null
-var temperatureChart = null
-var currentRoom = null
 
 const csvToChartData = csv => {
   const lines = csv.trim().split("\n");
@@ -47,6 +48,7 @@ function createChart(room) {
       labels: [],
       datasets: [{
         data: [],
+        label: room + ' Readings',
         borderColor: "#3e95cd",
         fill: false
       }]
@@ -70,7 +72,7 @@ function createChart(room) {
   const ctx = document.getElementById('temps').getContext('2d');
   temperatureChart = new Chart(ctx, config);
 
-  fetchCSV(room);
+  fetchCSV();
 
 }
 
