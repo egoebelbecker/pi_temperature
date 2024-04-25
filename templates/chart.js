@@ -1,20 +1,14 @@
-<script>
-let todos = document.getElementById('devices');
-let newDefault1 = new Option('Select room', null, true, true)
-newDefault1.disabled = true
-todos.add(newDefault1)
 const fetchDevices = () => fetch("devices")
-.then(res => res.json())
-  .then(data => {
-      data.devices.forEach(todo => {
-        let option = new Option(todo.name, todo.name)
-        console.log(option)
-        todos.add(option)
-      });
-});
+  .then(res => res.json())
+    .then(data => {
+        data.devices.forEach(todo => {
+          let option = new Option(todo.name, todo.name)
+          console.log(option)
+          document.getElementById('devices').add(option)
+        });
+  });
 
 
-fetchDevices();
 
 var timeout = null
 var temperatureChart = null
@@ -53,7 +47,6 @@ function createChart(room) {
       labels: [],
       datasets: [{
         data: [],
-        label: room,
         borderColor: "#3e95cd",
         fill: false
       }]
@@ -67,6 +60,9 @@ function createChart(room) {
         title: {
           display: false,
         }
+        legend: {
+          display: false,
+        }
       }
     }
   };
@@ -78,4 +74,3 @@ function createChart(room) {
 
 }
 
-</script>
