@@ -31,7 +31,7 @@ const fetchDevices = () => fetch("devices")
     for (var i = 0; i < data.length; i++) {
       var d = data[i];
       console.log(d);
-      select.options.add(new Option(d.name, d.id));
+      select.options.add(new Option(d.name, d.name));
     }
 });
 
